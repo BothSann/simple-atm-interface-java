@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class ATM {
     private Account account;
     private Scanner scanner;
@@ -30,14 +31,18 @@ public class ATM {
         try {
             double amount = scanner.nextDouble();
             if(account.deposit(amount)) {
-                System.out.println("Successfully deposited: $" + String.format("%.2f", amount));
-                System.out.println("New balance: $" + String.format("%.2f", account.getBalance()));
-                System.out.println("Transaction completed successfully.");
+                displayDepositSuccessMessage(amount);
             }
         } catch(Exception e) {
             System.out.println("Invalid input. Please enter a valid number.");
             scanner.nextLine();
         }
+    }
+
+    public void displayDepositSuccessMessage(double amount) {
+        System.out.println("Successfully deposited: $" + String.format("%.2f", amount));
+        System.out.println("New balance: $" + String.format("%.2f", account.getBalance()));
+        System.out.println("Transaction completed successfully.");
     }
 
     public void withdraw() {
@@ -47,14 +52,18 @@ public class ATM {
         try {
             double amount = scanner.nextDouble();
             if(account.withdraw(amount)) {
-                System.out.println("Successfully withdrew: $" + String.format("%.2f", amount));
-                System.out.println("Remaining balance: $" + String.format("%.2f", account.getBalance()));
-                System.out.println("Transaction completed successfully.");
+                displayWithdrawalSuccessMessage(amount);
             }
         } catch (Exception e) {
             System.out.println("Invalid input. Please enter a valid number.");
             scanner.nextLine();
         }
+    }
+
+    public void displayWithdrawalSuccessMessage(double amount) {
+        System.out.println("Successfully withdrew: $" + String.format("%.2f", amount));
+        System.out.println("Remaining balance: $" + String.format("%.2f", account.getBalance()));
+        System.out.println("Transaction completed successfully.");
     }
 
     public void exit() {
@@ -105,10 +114,4 @@ public class ATM {
 
         scanner.close();
     }
-
-    public static void main(String[] args) {
-        ATM atm = new ATM();
-        atm.run();
-    }
-
 }
