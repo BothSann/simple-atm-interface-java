@@ -86,6 +86,26 @@ public class ATM {
         };
     }
 
+    public void run() {
+        boolean continueRunning = true;
+
+        System.out.println("Welcome to the Simple ATM Interface!");
+
+        while(continueRunning) {
+            displayMenu();
+
+            try {
+                int choice = scanner.nextInt();
+                continueRunning = processChoice(choice);
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter a number between 1 and 4.");
+                scanner.nextLine(); // Clear the invalid input
+            }
+        }
+
+        scanner.close();
+    }
+
     public static void main(String[] args) {
         ATM atm = new ATM();
         atm.run();
